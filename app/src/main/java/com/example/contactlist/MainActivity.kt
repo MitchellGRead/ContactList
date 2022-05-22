@@ -1,5 +1,6 @@
 package com.example.contactlist
 
+import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -16,7 +17,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             ContactListTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
+                Surface() {
                     Greeting("Android")
                 }
             }
@@ -29,7 +30,15 @@ fun Greeting(name: String) {
     Text(text = "Hello $name!")
 }
 
-@Preview(showBackground = true)
+@Preview(
+    name = "Dark Theme",
+    showBackground = true,
+    uiMode = Configuration.UI_MODE_NIGHT_YES
+)
+@Preview(
+    name = "Default",
+    showBackground = true
+)
 @Composable
 fun DefaultPreview() {
     ContactListTheme {
