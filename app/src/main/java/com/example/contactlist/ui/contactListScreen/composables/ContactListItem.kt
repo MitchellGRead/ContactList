@@ -21,12 +21,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.contactlist.ui.contactListScreen.view.Contact
+import com.example.contactlist.ui.contactListScreen.view.ContactUiModel
 import com.example.contactlist.ui.theme.ContactListTheme
 import com.example.contactlist.ui.theme.Dimen
 
 @Composable
-internal fun ContactListItem(contact: Contact) {
+internal fun ContactListItem(contactUiModel: ContactUiModel) {
     Box(modifier = Modifier.fillMaxWidth()) {
         Column {
             Row(verticalAlignment = Alignment.CenterVertically,
@@ -35,7 +35,7 @@ internal fun ContactListItem(contact: Contact) {
                     .padding(all = Dimen.M)
             ) {
                 ContactImage()
-                ContactName(contact.name)
+                ContactName(contactUiModel.name)
             }
             BottomBorder()
         }
@@ -93,12 +93,12 @@ fun BottomBorder() {
 )
 @Composable
 private fun ContactScreenPreview() {
-    val contact = Contact(
+    val contactUiModel = ContactUiModel(
         name = "Mitchell"
     )
 
     ContactListTheme {
-        ContactListItem(contact)
+        ContactListItem(contactUiModel)
     }
 }
 // endregion

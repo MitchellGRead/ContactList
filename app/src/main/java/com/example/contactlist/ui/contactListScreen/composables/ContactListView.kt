@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.contactlist.ui.contactListScreen.view.Contact
+import com.example.contactlist.ui.contactListScreen.view.ContactUiModel
 import com.example.contactlist.ui.contactListScreen.view.ContactListUiState
 import com.example.contactlist.ui.contactListScreen.view.ContactListViewModel
 import com.example.contactlist.ui.theme.ContactListTheme
@@ -31,7 +31,7 @@ private fun ContactListView(uiState: ContactListUiState) {
 }
 
 @Composable
-fun ContactList(contacts: List<Contact>) {
+fun ContactList(contacts: List<ContactUiModel>) {
     LazyColumn(
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -55,9 +55,9 @@ fun ContactList(contacts: List<Contact>) {
 private fun ContactScreenPreview() {
     val uiState = ContactListUiState(
         contacts = listOf(
-            Contact("Mitchell"),
-            Contact("Jadyn"),
-            Contact("Tom"),
+            ContactUiModel("Mitchell"),
+            ContactUiModel("Jadyn"),
+            ContactUiModel("Tom"),
         )
     )
     ContactListTheme {

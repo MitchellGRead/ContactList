@@ -1,10 +1,10 @@
 package com.example.contactlist.ui.contactListScreen.view
 
 data class ContactListUiState(
-    val contacts: List<Contact> = listOf()
+    val contacts: List<ContactUiModel> = listOf()
 )
 
-data class Contact(
+data class ContactUiModel(
     val name: String,
     val imageUri: String = "",
 )

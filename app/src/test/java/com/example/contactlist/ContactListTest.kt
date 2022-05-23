@@ -1,7 +1,7 @@
 package com.example.contactlist
 
 import com.example.contactlist.ui.contactListScreen.useCases.FetchContactsUseCase
-import com.example.contactlist.ui.contactListScreen.view.Contact
+import com.example.contactlist.ui.contactListScreen.view.ContactUiModel
 import com.example.contactlist.ui.contactListScreen.view.ContactListUiState
 import com.example.contactlist.ui.contactListScreen.view.ContactListViewModel
 import junit.framework.TestCase.assertEquals
@@ -17,7 +17,7 @@ internal class ContactListTest {
     fun `WHEN the view model is created THEN ui state with contacts emitted`() {
         val expected = ContactListUiState(
             contacts = listOf(
-                Contact(
+                ContactUiModel(
                     name = "Mitchell",
                     imageUri = ""
                 )
