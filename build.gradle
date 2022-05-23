@@ -15,7 +15,7 @@ buildscript {
         material_version = '1.6.0'
 
         /* Compose */
-        compose_version = '1.2.0-beta01'
+        compose_version = '1.2.0-beta02'
 
         /* Lifecycle */
         lifecycle_version = '2.4.1'
