@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -30,19 +31,24 @@ import com.example.contactlist.ui.theme.Dimen
 @Composable
 fun ContactListScreen() {
     Scaffold {
-        ContactCard()
+        ContactListItem()
     }
 }
 
 @Composable
-private fun ContactCard() {
-    Row(verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(all = Dimen.L)
-    ) {
-        ContactImage()
-        ContactName()
+private fun ContactListItem() {
+    Box(modifier = Modifier.fillMaxWidth()) {
+        Column {
+            Row(verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(all = Dimen.M)
+            ) {
+                ContactImage()
+                ContactName()
+            }
+            BottomBorder()
+        }
     }
 }
 
@@ -55,7 +61,6 @@ private fun ContactImage() {
             .size(ContactListScreenDimen.imageSize)
             .clip(CircleShape)
             .background(Color.Cyan),
-
     ) {
         Image(
             imageVector = Icons.Filled.Person,
@@ -74,9 +79,16 @@ private fun ContactName() {
     ) {
         Text(
             text = "Persons Name",
-            style = MaterialTheme.typography.h6
+            style = MaterialTheme.typography.body1
         )
     }
+}
+
+@Composable
+fun BottomBorder() {
+    Divider(
+        modifier = Modifier.fillMaxWidth(),
+    )
 }
 // endregion
 
