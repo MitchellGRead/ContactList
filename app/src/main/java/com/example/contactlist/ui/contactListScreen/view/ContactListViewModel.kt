@@ -7,11 +7,15 @@ import kotlinx.coroutines.flow.update
 
 class ContactListViewModel : ViewModel() {
 
-    private val _uiModel = MutableStateFlow(ContactListUiState())
-    val uiModel = _uiModel.asStateFlow()
+    private val _uiState = MutableStateFlow(ContactListUiState())
+    val uiState = _uiState.asStateFlow()
+
+    init {
+        fetchContactList()
+    }
 
     fun fetchContactList() {
-        _uiModel.update { ContactListUiState(contacts = listOf(Contact(name = "Mitchell"))) }
+        _uiState.update { ContactListUiState(contacts = listOf(Contact(name = "Mitchell"))) }
     }
 
 }

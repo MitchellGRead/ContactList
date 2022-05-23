@@ -1,6 +1,5 @@
 package com.example.contactlist
 
-import androidx.compose.runtime.collectAsState
 import com.example.contactlist.ui.contactListScreen.view.Contact
 import com.example.contactlist.ui.contactListScreen.view.ContactListUiState
 import com.example.contactlist.ui.contactListScreen.view.ContactListViewModel
@@ -13,7 +12,7 @@ internal class ContactListTest {
     private val viewModel = ContactListViewModel()
 
     @Test
-    fun `GIVEN a list of contacts WHEN getContacts THEN ui state with contacts received`() {
+    fun `WHEN the view model is created THEN ui state with contacts emitted`() {
         val expected = ContactListUiState(
             contacts = listOf(
                 Contact(
@@ -23,8 +22,7 @@ internal class ContactListTest {
             )
         )
 
-        viewModel.fetchContactList()
-        val actual = viewModel.uiModel.value
+        val actual = viewModel.uiState.value
 
         assertEquals(actual, expected)
     }

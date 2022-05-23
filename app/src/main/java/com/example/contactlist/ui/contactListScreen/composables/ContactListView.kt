@@ -7,26 +7,31 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.contactlist.ui.contactListScreen.view.Contact
+import com.example.contactlist.ui.contactListScreen.view.ContactListUiState
+import com.example.contactlist.ui.contactListScreen.view.ContactListViewModel
 import com.example.contactlist.ui.theme.ContactListTheme
 
-/* Scaffolding for the screen */
+@Composable
+fun ContactListView(viewModel: ContactListViewModel) {
+    val uiState = viewModel.uiState.collectAsState()
+
+    ContactListView(uiState.value)
+}
+
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun ContactListScreen() {
-    val contacts by remember { mutableStateOf(listOf("Mitchell", "Jadyn", "Tom"))}
-
+private fun ContactListView(uiState: ContactListUiState) {
     Scaffold {
-        ContactList(contacts)
+        ContactList(uiState.contacts)
     }
 }
 
 @Composable
-fun ContactList(contacts: List<String>) {
+fun ContactList(contacts: List<Contact>) {
     LazyColumn(
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -48,8 +53,15 @@ fun ContactList(contacts: List<String>) {
 )
 @Composable
 private fun ContactScreenPreview() {
+    val uiState = ContactListUiState(
+        contacts = listOf(
+            Contact("Mitchell"),
+            Contact("Jadyn"),
+            Contact("Tom"),
+        )
+    )
     ContactListTheme {
-        ContactListScreen()
+        ContactListView(uiState)
     }
 }
 // endregion
