@@ -14,6 +14,7 @@ import com.example.contactlist.ui.contactListScreen.view.ContactUiModel
 import com.example.contactlist.ui.contactListScreen.view.ContactListUiState
 import com.example.contactlist.ui.contactListScreen.view.ContactListViewModel
 import com.example.contactlist.ui.theme.ContactListTheme
+import com.example.contactlist.util.resource.Resource
 
 @Composable
 fun ContactListView(viewModel: ContactListViewModel) {
@@ -26,7 +27,11 @@ fun ContactListView(viewModel: ContactListViewModel) {
 @Composable
 private fun ContactListView(uiState: ContactListUiState) {
     Scaffold {
-        ContactList(uiState.contacts)
+        when (val contacts = uiState.contacts) {
+            is Resource.Success -> ContactList(contacts = contacts.data)
+            is Resource.Error -> {  }
+            Resource.Loading -> {  }
+        }
     }
 }
 
@@ -54,10 +59,12 @@ fun ContactList(contacts: List<ContactUiModel>) {
 @Composable
 private fun ContactScreenPreview() {
     val uiState = ContactListUiState(
-        contacts = listOf(
-            ContactUiModel("Mitchell"),
-            ContactUiModel("Jadyn"),
-            ContactUiModel("Tom"),
+        contacts = Resource.Success(
+            listOf(
+                ContactUiModel("Mitchell"),
+                ContactUiModel("Jadyn"),
+                ContactUiModel("Tom"),
+            )
         )
     )
     ContactListTheme {

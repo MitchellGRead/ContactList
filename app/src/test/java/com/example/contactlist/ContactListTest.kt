@@ -4,8 +4,10 @@ import com.example.contactlist.ui.contactListScreen.useCases.FetchContactsUseCas
 import com.example.contactlist.ui.contactListScreen.view.ContactUiModel
 import com.example.contactlist.ui.contactListScreen.view.ContactListUiState
 import com.example.contactlist.ui.contactListScreen.view.ContactListViewModel
+import com.example.contactlist.util.resource.Resource
 import junit.framework.TestCase.assertEquals
 import org.junit.Test
+import java.lang.RuntimeException
 
 
 internal class ContactListTest {
@@ -14,18 +16,20 @@ internal class ContactListTest {
     private val viewModel = ContactListViewModel(fetchContactsUseCase)
 
     @Test
-    fun `WHEN the view model is created THEN ui state with contacts emitted`() {
+    fun `GIVEN success WHEN the view model is created THEN ui state with contacts emitted`() {
         val expected = ContactListUiState(
-            contacts = listOf(
-                ContactUiModel(
-                    name = "Mitchell",
-                    imageUri = ""
+            contacts = Resource.Success(
+                listOf(
+                    ContactUiModel(
+                        name = "Mitchell",
+                        imageUri = ""
+                    )
                 )
             )
         )
 
         val actual = viewModel.uiState.value
 
-        assertEquals(actual, expected)
+        assertEquals(expected, actual)
     }
 }

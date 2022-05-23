@@ -1,7 +1,9 @@
 package com.example.contactlist.ui.contactListScreen.view
 
+import com.example.contactlist.util.resource.Resource
+
 data class ContactListUiState(
-    val contacts: List<ContactUiModel> = listOf()
+    val contacts: Resource<List<ContactUiModel>> = Resource.Loading,
 )
 
 data class ContactUiModel(
