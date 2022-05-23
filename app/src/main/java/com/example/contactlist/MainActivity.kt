@@ -7,6 +7,7 @@ import androidx.compose.material.Surface
 import androidx.lifecycle.ViewModelProvider
 import com.example.contactlist.ui.contactListScreen.composables.ContactListView
 import com.example.contactlist.ui.contactListScreen.view.ContactListViewModel
+import com.example.contactlist.ui.contactListScreen.view.ContactListViewModelFactory
 import com.example.contactlist.ui.theme.ContactListTheme
 
 class MainActivity : ComponentActivity() {
@@ -14,7 +15,8 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this)[ContactListViewModel::class.java]
+        val viewModelFactory = ContactListViewModelFactory()
+        viewModel = ViewModelProvider(this, viewModelFactory)[ContactListViewModel::class.java]
 
         setContent {
             ContactListTheme {

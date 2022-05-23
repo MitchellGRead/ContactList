@@ -1,5 +1,6 @@
 package com.example.contactlist
 
+import com.example.contactlist.ui.contactListScreen.useCases.FetchContactsUseCase
 import com.example.contactlist.ui.contactListScreen.view.Contact
 import com.example.contactlist.ui.contactListScreen.view.ContactListUiState
 import com.example.contactlist.ui.contactListScreen.view.ContactListViewModel
@@ -9,7 +10,8 @@ import org.junit.Test
 
 internal class ContactListTest {
 
-    private val viewModel = ContactListViewModel()
+    private val fetchContactsUseCase = FetchContactsUseCase()
+    private val viewModel = ContactListViewModel(fetchContactsUseCase)
 
     @Test
     fun `WHEN the view model is created THEN ui state with contacts emitted`() {
