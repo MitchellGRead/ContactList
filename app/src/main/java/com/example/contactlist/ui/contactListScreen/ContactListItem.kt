@@ -25,7 +25,7 @@ import com.example.contactlist.ui.theme.ContactListTheme
 import com.example.contactlist.ui.theme.Dimen
 
 @Composable
-internal fun ContactListItem() {
+internal fun ContactListItem(contact: String) {
     Box(modifier = Modifier.fillMaxWidth()) {
         Column {
             Row(verticalAlignment = Alignment.CenterVertically,
@@ -34,7 +34,7 @@ internal fun ContactListItem() {
                     .padding(all = Dimen.M)
             ) {
                 ContactImage()
-                ContactName()
+                ContactName(contact)
             }
             BottomBorder()
         }
@@ -59,14 +59,14 @@ private fun ContactImage() {
 }
 
 @Composable
-private fun ContactName() {
+private fun ContactName(contactName: String) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(start = Dimen.XS)
     ) {
         Text(
-            text = "Persons Name",
+            text = contactName,
             style = MaterialTheme.typography.body1
         )
     }
@@ -93,7 +93,7 @@ fun BottomBorder() {
 @Composable
 private fun ContactScreenPreview() {
     ContactListTheme {
-        ContactListItem()
+        ContactListItem("Mitchell")
     }
 }
 // endregion
