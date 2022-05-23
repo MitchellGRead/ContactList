@@ -1,6 +1,5 @@
 package com.example.contactlist.ui.contactListScreen
 
-import android.annotation.SuppressLint
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -13,7 +12,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Divider
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
@@ -26,14 +24,61 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.contactlist.ui.theme.ContactListTheme
 import com.example.contactlist.ui.theme.Dimen
 
-/* Scaffolding for the screen */
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun ContactListScreen() {
-    Scaffold {
-        ContactListItem()
+internal fun ContactListItem() {
+    Box(modifier = Modifier.fillMaxWidth()) {
+        Column {
+            Row(verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(all = Dimen.M)
+            ) {
+                ContactImage()
+                ContactName()
+            }
+            BottomBorder()
+        }
     }
 }
+
+// region Sub-Composables
+@Composable
+private fun ContactImage() {
+    Box(contentAlignment = Alignment.Center,
+        modifier = Modifier
+            .size(ContactListScreenDimen.imageSize)
+            .clip(CircleShape)
+            .background(Color.Cyan),
+    ) {
+        Image(
+            imageVector = Icons.Filled.Person,
+            contentDescription = "Person Image",
+            modifier = Modifier.size(ContactListScreenDimen.imageIconSize)
+        )
+    }
+}
+
+@Composable
+private fun ContactName() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = Dimen.XS)
+    ) {
+        Text(
+            text = "Persons Name",
+            style = MaterialTheme.typography.body1
+        )
+    }
+}
+
+@Composable
+fun BottomBorder() {
+    Divider(
+        modifier = Modifier.fillMaxWidth(),
+    )
+}
+// endregion
 
 // region Previews
 @Preview(
@@ -48,7 +93,7 @@ fun ContactListScreen() {
 @Composable
 private fun ContactScreenPreview() {
     ContactListTheme {
-        ContactListScreen()
+        ContactListItem()
     }
 }
 // endregion
