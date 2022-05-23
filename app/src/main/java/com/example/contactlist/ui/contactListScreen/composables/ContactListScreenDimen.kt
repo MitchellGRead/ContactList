@@ -1,4 +1,4 @@
-package com.example.contactlist.ui.contactListScreen
+package com.example.contactlist.ui.contactListScreen.composables
 
 import androidx.compose.ui.unit.dp
 

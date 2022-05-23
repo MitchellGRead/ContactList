@@ -1,4 +1,4 @@
-package com.example.contactlist.ui.contactListScreen
+package com.example.contactlist.ui.contactListScreen.composables
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
