@@ -21,7 +21,7 @@ buildscript {
         lifecycle_version = '2.4.1'
 
         /* Coroutines */
-        coroutines_version = '1.5.2'
+        coroutines_version = '1.6.1'
 
         /* Timber */
         timber_version = '5.0.1'
